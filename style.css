@@ -17,23 +17,19 @@
     box-sizing: border-box;
 }
 
-html {
+html, body {
     overflow-x: hidden;
     width: 100%;
-    -webkit-text-size-adjust: 100%;
-    -ms-text-size-adjust: 100%;
+    max-width: 100%;
 }
 
 body {
-    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    font-family: 'Inter', sans-serif;
     background: var(--bg-primary);
     color: var(--text-primary);
     overflow-x: hidden;
     line-height: 1.6;
-    width: 100%;
-    min-height: 100vh;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
+    position: relative;
 }
 
 ::-webkit-scrollbar {
@@ -63,11 +59,11 @@ header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    width: 100%;
+    max-width: 100vw;
 }
 
 .logo {
-    font-family: 'Playfair Display', Georgia, serif;
+    font-family: 'Playfair Display', serif;
     font-size: 1.8rem;
     font-weight: 700;
     background: linear-gradient(135deg, var(--accent-violet), var(--accent-violet-dark));
@@ -88,14 +84,13 @@ header {
     text-decoration: none;
     font-size: 0.9rem;
     font-weight: 500;
-    position: relative;
 }
 
 .nav-links a:hover {
     color: var(--text-primary);
 }
 
-.nav-links a::after {
+.nav-links::after {
     content: '';
     position: absolute;
     bottom: -4px;
@@ -179,15 +174,14 @@ header {
 }
 
 .hero-title {
-    font-family: 'Playfair Display', Georgia, serif;
-    font-size: clamp(1.5rem, 4vw, 3rem);
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.2rem, 2.5rem, 3rem);
     font-weight: 700;
     line-height: 1.1;
     margin-bottom: 1rem;
     text-shadow: 0 4px 30px rgba(0,0,0,0.5);
     word-wrap: break-word;
     overflow-wrap: break-word;
-    hyphens: auto;
 }
 
 .hero-meta {
@@ -231,13 +225,10 @@ header {
     font-weight: 600;
     cursor: pointer;
     transition: all 0.3s ease;
-    display: inline-flex;
+    display: flex;
     align-items: center;
     gap: 0.5rem;
     white-space: nowrap;
-    text-decoration: none;
-    -webkit-appearance: none;
-    appearance: none;
 }
 
 .btn-primary:hover {
@@ -255,13 +246,10 @@ header {
     font-weight: 600;
     cursor: pointer;
     transition: all 0.3s ease;
-    display: inline-flex;
+    display: flex;
     align-items: center;
     gap: 0.5rem;
     white-space: nowrap;
-    text-decoration: none;
-    -webkit-appearance: none;
-    appearance: none;
 }
 
 .btn-outline:hover {
@@ -287,9 +275,6 @@ header {
     background: rgba(255,255,255,0.3);
     cursor: pointer;
     transition: all 0.3s ease;
-    border: none;
-    -webkit-appearance: none;
-    appearance: none;
 }
 
 .dot.active {
@@ -314,7 +299,7 @@ header {
     justify-content: space-between;
     box-shadow: 0 20px 60px rgba(0,0,0,0.5);
     flex-wrap: wrap;
-    width: calc(100% - 6rem);
+    max-width: calc(100vw - 6rem);
 }
 
 .search-box {
@@ -328,18 +313,25 @@ header {
     background: rgba(255,255,255,0.05);
     border: 1px solid var(--border);
     border-radius: 12px;
-    padding: 0.9rem 1rem 0.9rem 2.5rem;
+    padding: 0.9rem 0.9rem 0.9rem 0.9rem;
     color: white;
     font-size: 0.95rem;
     transition: all 0.3s ease;
-    -webkit-appearance: none;
-    appearance: none;
 }
 
 .search-box input:focus {
     outline: none;
     border-color: var(--accent-violet);
     box-shadow: 0 0 20px rgba(168, 85, 247, 0.3);
+}
+
+.search-box::before {
+    content: '';
+    position: absolute;
+    left: 1rem;
+    top: 50%;
+    transform: translateY(-50%);
+    opacity: 0.5;
 }
 
 .search-btn {
@@ -353,8 +345,6 @@ header {
     cursor: pointer;
     transition: transform 0.2s, box-shadow 0.2s;
     white-space: nowrap;
-    -webkit-appearance: none;
-    appearance: none;
 }
 
 .search-btn:hover {
@@ -364,13 +354,13 @@ header {
 
 .content-section {
     padding: 1rem 3rem 4rem;
-    width: 100%;
+    max-width: 100vw;
 }
 
 .hidden { display: none !important; }
 
 .section-title {
-    font-family: 'Playfair Display', Georgia, serif;
+    font-family: 'Playfair Display', serif;
     font-size: 2rem;
     font-weight: 700;
     margin-bottom: 1.8rem;
@@ -396,7 +386,9 @@ header {
 }
 
 .anime-card {
+    flex: 0 0 auto;
     width: 100%;
+    max-width: 240px;
     position: relative;
     border-radius: 20px;
     overflow: hidden;
@@ -425,6 +417,7 @@ header {
     height: 100%;
     object-fit: cover;
     display: block;
+    max-width: 100%;
 }
 
 .rating-badge {
@@ -516,13 +509,17 @@ header {
     font-weight: 600;
     cursor: pointer;
     transition: background 0.2s, color 0.2s;
-    -webkit-appearance: none;
-    appearance: none;
 }
 
 .watchlist-btn:hover {
     background: var(--accent-violet);
     color: white;
+}
+
+.watchlist-btn.in-watchlist {
+    background: rgba(168, 85, 247, 0.2);
+    color: var(--accent-violet);
+    cursor: default;
 }
 
 .remove-btn {
@@ -537,8 +534,6 @@ header {
     font-weight: 600;
     cursor: pointer;
     transition: background 0.2s;
-    -webkit-appearance: none;
-    appearance: none;
 }
 
 .remove-btn:hover {
@@ -576,6 +571,7 @@ header {
     transition: border-color 0.3s, transform 0.3s, box-shadow 0.3s;
     cursor: default;
     width: 100%;
+    max-width: 100%;
 }
 
 .rank-row:hover {
@@ -585,7 +581,7 @@ header {
 }
 
 .rank-number {
-    font-family: 'Playfair Display', Georgia, serif;
+    font-family: 'Playfair Display', serif;
     font-size: 2.8rem;
     font-weight: 700;
     color: transparent;
@@ -688,7 +684,7 @@ header {
     text-decoration: none;
     color: var(--text-primary);
     transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s;
-    width: 100%;
+    max-width: 100%;
 }
 
 .news-card:hover {
@@ -762,13 +758,12 @@ header {
     flex-direction: column;
     justify-content: center;
     gap: 5px;
-    background: none;
+    background:none;
     border: none;
     cursor: pointer;
     padding: 4px;
     z-index: 1001;
-    -webkit-appearance: none;
-    appearance: none;
+    color: #fff;
 }
 
 .burger span {
@@ -797,13 +792,11 @@ header {
     align-items: center;
     justify-content: center;
     transition: background 0.2s;
-    -webkit-appearance: none;
-    appearance: none;
 }
 
 .nav-close:hover { background: rgba(255,255,255,0.14); }
 
-/* Mobile styles - max-width: 768px */
+/* Mobile styles */
 @media (max-width: 768px) {
     .burger { display: flex; }
 
@@ -813,7 +806,7 @@ header {
         position: fixed;
         top: 0;
         right: 0;
-        width: min(280px, 85vw);
+        width: min(240px, 80vw);
         height: 100vh;
         background: #0d0d1a;
         padding: 68px 24px 24px;
@@ -823,7 +816,6 @@ header {
         list-style: none;
         margin: 0;
         overflow-y: auto;
-        -webkit-overflow-scrolling: touch;
     }
     
     .nav-links.open { display: flex; }
@@ -853,131 +845,66 @@ header {
     
     .nav-overlay.open { display: block; }
 
-    header {
-        padding: 1rem 1.5rem;
+    .content-section {
+        padding: 1rem 1rem 3rem;
     }
 
-    .logo {
-        font-size: 1.5rem;
-    }
-
-    .hero-container {
-        height: 70vh;
+    .section-title {
+        font-size: 1.4rem;
+        margin-bottom: 1.2rem;
     }
 
     .hero-slide {
-        padding: 0 1.5rem 5rem;
+        padding: 0 1.5rem 6rem;
     }
 
     .hero-title {
-        font-size: clamp(1.5rem, 6vw, 2.2rem);
-        line-height: 1.2;
-    }
-
-    .hero-description {
-        font-size: 1rem;
-        margin-bottom: 1.5rem;
+        font-size: clamp(1.5rem, 5vw, 2rem);
     }
 
     .hero-buttons {
         flex-direction: column;
-        gap: 0.75rem;
+        width: 100%;
     }
 
     .btn-primary, .btn-outline {
         width: 100%;
         justify-content: center;
-        padding: 0.9rem 1.5rem;
-    }
-
-    .carousel-dots {
-        bottom: 2rem;
     }
 
     .filter-bar {
         margin: -2rem 1rem 2rem;
         padding: 1rem;
-        width: calc(100% - 2rem);
-        flex-direction: column;
-        align-items: stretch;
+        max-width: calc(100vw - 2rem);
     }
 
     .search-box {
         min-width: 100%;
     }
 
-    .search-btn {
-        width: 100%;
-    }
-
-    .content-section {
-        padding: 1rem 1rem 3rem;
-    }
-
-    .section-title {
-        font-size: 1.5rem;
-        margin-bottom: 1.2rem;
-    }
-
-    .cards-grid {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 1rem;
-    }
-
-    .anime-card {
-        border-radius: 12px;
-    }
-
-    .card-body {
-        padding: 0.75rem;
-    }
-
-    .card-title {
-        font-size: 0.85rem;
-        -webkit-line-clamp: 2;
-    }
-
-    .card-meta {
-        font-size: 0.75rem;
-    }
-
-    .card-synopsis {
-        display: none;
-    }
-
-    .card-tags {
-        display: none;
-    }
-
-    .watchlist-btn, .remove-btn {
-        margin-top: 0.5rem;
-        padding: 0.5rem;
-        font-size: 0.75rem;
-    }
-
     .rank-row {
         display: grid;
-        grid-template-columns: 40px 50px 1fr;
+        grid-template-columns: 44px 56px 1fr;
         grid-template-rows: auto auto;
         grid-template-areas:
             "num  img  info"
             "num  img  right";
-        gap: 0.3rem 0.8rem;
-        padding: 0.8rem;
+        gap: 0.3rem 0.9rem;
+        padding: 0.9rem 1rem;
         align-items: start;
     }
 
     .rank-number {
         grid-area: num;
-        font-size: 1.6rem;
+        font-size: 1.8rem;
         min-width: unset;
         align-self: center;
     }
 
     .rank-img {
         grid-area: img;
-        width: 50px;
-        height: 70px;
+        width: 56px;
+        height: 80px;
         align-self: center;
     }
 
@@ -988,7 +915,7 @@ header {
     }
 
     .rank-title {
-        font-size: 0.9rem;
+        font-size: 0.95rem;
         white-space: normal;
         line-height: 1.3;
         margin-bottom: 0.2rem;
@@ -996,7 +923,7 @@ header {
     }
 
     .rank-meta {
-        font-size: 0.75rem;
+        font-size: 0.78rem;
         gap: 0.3rem;
     }
 
@@ -1010,7 +937,67 @@ header {
     }
 
     .rank-score {
-        font-size: 1rem;
+        font-size: 1.05rem;
+    }
+
+    .classic-badge {
+        font-size: 0.65rem;
+        padding: 0.25rem 0.6rem;
+    }
+
+    .rank-wl-btn {
+        padding: 0.35rem 0.75rem;
+        font-size: 0.72rem;
+    }
+
+    .cards-grid {
+        grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+        gap: 1rem;
+    }
+
+    .anime-card {
+        max-width: 100%;
+    }
+
+    .news-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 480px) {
+    header {
+        padding: 0.9rem 1rem;
+    }
+
+    .logo {
+        font-size: 1.4rem;
+    }
+
+    .rank-row {
+        grid-template-columns: 36px 50px 1fr;
+        gap: 0.25rem 0.7rem;
+        padding: 0.8rem 0.75rem;
+    }
+
+    .rank-number {
+        font-size: 1.5rem;
+    }
+
+    .rank-img {
+        width: 50px;
+        height: 70px;
+    }
+
+    .rank-title {
+        font-size: 0.88rem;
+    }
+
+    .rank-meta {
+        font-size: 0.72rem;
+    }
+
+    .rank-score {
+        font-size: 0.95rem;
     }
 
     .classic-badge {
@@ -1019,158 +1006,15 @@ header {
     }
 
     .rank-wl-btn {
+        font-size: 0.68rem;
         padding: 0.3rem 0.6rem;
-        font-size: 0.7rem;
-    }
-
-    .news-grid {
-        grid-template-columns: 1fr;
-        gap: 1rem;
-    }
-
-    .news-card {
-        border-radius: 12px;
-    }
-
-    .news-img {
-        height: 150px;
-    }
-
-    .news-body {
-        padding: 0.9rem;
-    }
-
-    .news-title {
-        font-size: 0.9rem;
-    }
-
-    .news-excerpt {
-        font-size: 0.8rem;
-    }
-}
-
-/* Extra small screens - max-width: 480px */
-@media (max-width: 480px) {
-    header {
-        padding: 0.8rem 1rem;
-    }
-
-    .logo {
-        font-size: 1.3rem;
-    }
-
-    .hero-container {
-        height: 60vh;
-    }
-
-    .hero-slide {
-        padding: 0 1rem 4rem;
-    }
-
-    .hero-title {
-        font-size: 1.4rem;
-    }
-
-    .hero-meta {
-        font-size: 0.8rem;
-        gap: 0.75rem;
-    }
-
-    .hero-description {
-        font-size: 0.9rem;
-        line-height: 1.6;
-    }
-
-    .carousel-dots {
-        gap: 0.5rem;
-    }
-
-    .dot {
-        width: 10px;
-        height: 10px;
-    }
-
-    .dot.active {
-        width: 30px;
     }
 
     .cards-grid {
         grid-template-columns: repeat(2, 1fr);
-        gap: 0.75rem;
-    }
-
-    .anime-card {
-        border-radius: 10px;
-    }
-
-    .card-image {
-        aspect-ratio: 3/4;
-    }
-
-    .rating-badge {
-        top: 0.5rem;
-        right: 0.5rem;
-        padding: 0.2rem 0.5rem;
-        font-size: 0.7rem;
-    }
-
-    .card-body {
-        padding: 0.6rem;
-    }
-
-    .card-title {
-        font-size: 0.8rem;
-        margin-bottom: 0.2rem;
-    }
-
-    .card-meta {
-        font-size: 0.7rem;
-    }
-
-    .rank-row {
-        grid-template-columns: 32px 45px 1fr;
-        gap: 0.2rem 0.6rem;
-        padding: 0.7rem;
-    }
-
-    .rank-number {
-        font-size: 1.4rem;
-    }
-
-    .rank-img {
-        width: 45px;
-        height: 60px;
-    }
-
-    .rank-title {
-        font-size: 0.85rem;
-    }
-
-    .rank-meta {
-        font-size: 0.7rem;
-    }
-
-    .rank-score {
-        font-size: 0.9rem;
-    }
-
-    .classic-badge {
-        font-size: 0.55rem;
-        padding: 0.15rem 0.4rem;
-    }
-
-    .rank-wl-btn {
-        font-size: 0.65rem;
-        padding: 0.25rem 0.5rem;
-    }
-
-    .section-title {
-        font-size: 1.3rem;
-        padding-left: 0.8rem;
     }
 }
 
-/* Scene Search Page Styles */
 .scene-hero {
     position: relative;
     width: 100%;
@@ -1192,8 +1036,8 @@ header {
 }
 
 .scene-hero h1 {
-    font-family: 'Playfair Display', Georgia, serif;
-    font-size: clamp(1.8rem, 4vw, 3.5rem);
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2rem, 4vw, 3.5rem);
     font-weight: 700;
     margin-bottom: 1rem;
     background: linear-gradient(135deg, var(--accent-violet), var(--accent-lime));
@@ -1254,7 +1098,7 @@ header {
     border-radius: 20px;
     padding: 2.5rem;
     box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
-    width: 100%;
+    max-width: 100%;
 }
 
 .upload-area {
@@ -1324,8 +1168,6 @@ header {
     font-size: 0.95rem;
     margin-bottom: 1.5rem;
     transition: all 0.3s ease;
-    -webkit-appearance: none;
-    appearance: none;
 }
 
 .url-input:focus {
@@ -1355,8 +1197,6 @@ header {
     align-items: center;
     justify-content: center;
     gap: 0.75rem;
-    -webkit-appearance: none;
-    appearance: none;
 }
 
 .execute-btn:hover {
@@ -1407,7 +1247,7 @@ header {
     border: 1px solid var(--border);
     border-radius: 20px;
     margin-top: 2rem;
-    width: 100%;
+    max-width: 100%;
 }
 
 .empty-state i {
@@ -1434,7 +1274,7 @@ header {
     overflow: hidden;
     margin-top: 2rem;
     box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
-    width: 100%;
+    max-width: 100%;
 }
 
 .video-container {
@@ -1480,7 +1320,7 @@ header {
 }
 
 .anime-details h2 {
-    font-family: 'Playfair Display', Georgia, serif;
+    font-family: 'Playfair Display', serif;
     font-size: 1.8rem;
     font-weight: 700;
     margin-bottom: 0.75rem;
@@ -1528,37 +1368,17 @@ header {
     word-wrap: break-word;
 }
 
-/* Scene Search Mobile Styles */
 @media (max-width: 768px) {
     .scene-hero {
         padding: 7rem 1.5rem 3rem;
-        min-height: 35vh;
-    }
-
-    .scene-hero h1 {
-        font-size: clamp(1.5rem, 6vw, 2.5rem);
-    }
-
-    .scene-hero p {
-        font-size: 1rem;
     }
 
     .upload-card {
         padding: 1.5rem;
-        border-radius: 16px;
     }
 
     .upload-area {
         padding: 2rem 1rem;
-    }
-
-    .upload-area i {
-        font-size: 2.5rem;
-    }
-
-    .scene-container {
-        padding: 0 1rem;
-        margin-top: -1.5rem;
     }
 
     .info-panel {
@@ -1575,123 +1395,22 @@ header {
     .anime-details h2 {
         font-size: 1.3rem;
     }
-
-    .meta-tag {
-        font-size: 0.8rem;
-        padding: 0.3rem 0.6rem;
-    }
-
-    .video-container video {
-        max-height: 250px;
-    }
-
-    .match-badge {
-        top: 0.5rem;
-        right: 0.5rem;
-        padding: 0.4rem 0.8rem;
-        font-size: 0.75rem;
-    }
 }
 
 @media (max-width: 480px) {
-    .scene-hero {
-        padding: 6rem 1rem 2rem;
-        min-height: 30vh;
-    }
-
-    .scene-hero h1 {
-        font-size: 1.4rem;
-    }
-
-    .scene-hero p {
-        font-size: 0.9rem;
-        margin-bottom: 1.5rem;
-    }
-
-    .scene-status {
-        font-size: 0.75rem;
-        padding: 0.4rem 0.8rem;
-    }
-
-    .upload-card {
-        padding: 1rem;
-        border-radius: 12px;
-    }
-
-    .upload-area {
-        padding: 1.5rem 0.75rem;
-        border-radius: 12px;
-    }
-
-    .upload-area p {
-        font-size: 0.9rem;
-    }
-
-    .divider {
-        font-size: 0.75rem;
-        margin: 1rem 0;
-    }
-
-    .url-input {
-        padding: 0.9rem 1rem;
-        font-size: 0.9rem;
-    }
-
-    .execute-btn {
-        padding: 1rem;
-        font-size: 0.9rem;
-        letter-spacing: 2px;
-    }
-
     .info-panel {
         grid-template-columns: 1fr;
         text-align: center;
-        padding: 1rem;
-        gap: 1rem;
     }
 
     .cover-img {
-        width: 100px;
-        height: 145px;
+        width: 120px;
+        height: 175px;
         margin: 0 auto;
-    }
-
-    .anime-details h2 {
-        font-size: 1.2rem;
     }
 
     .anime-meta {
         justify-content: center;
-    }
-
-    .meta-tag {
-        font-size: 0.75rem;
-    }
-
-    .anime-desc {
-        font-size: 0.85rem;
-        text-align: left;
-    }
-
-    .loader-container {
-        padding: 2rem;
-    }
-
-    .loader {
-        width: 50px;
-        height: 50px;
-    }
-
-    .empty-state {
-        padding: 2rem 1rem;
-    }
-
-    .empty-state i {
-        font-size: 3rem;
-    }
-
-    .empty-state h3 {
-        font-size: 1.2rem;
     }
 }
 
@@ -1699,18 +1418,7 @@ header {
     display: none !important;
 }
 
-img, video, iframe, embed, object {
+img, video {
     max-width: 100%;
     height: auto;
-}
-
-table {
-    width: 100%;
-    max-width: 100%;
-}
-
-pre, code {
-    word-wrap: break-word;
-    overflow-wrap: break-word;
-    white-space: pre-wrap;
 }
