@@ -24,16 +24,6 @@ body {
             line-height: 1.6;
         }
         
-.hero-container {
-    overflow: visible !important;
-}
- 
-/* Ensure html/body are scrollable */
-html, body {
-    overflow-x: hidden;
-    overflow-y: auto !important;
-    height: auto !important;
-}
 ::-webkit-scrollbar {
         width: 8px;
         height: 8px;
